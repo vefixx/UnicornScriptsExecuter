@@ -1,0 +1,12 @@
+﻿using CommandLine;
+
+namespace UnicornStatsUpdater.Models;
+
+public class Options
+{
+    [Option("period_type", Required = true, HelpText = "Тип обновления (hourly - часовая (обновится часовая витрина), daily - дневная (обновится дневная витрина), weekly - недельная (обновится недельная витрина))")]
+    public string PeriodType { get; set; }
+    
+    [Option("with_file_logging", Required = false, HelpText = "Логировать ли работу программы в текстовый файл")]
+    public bool WithFileLogging { get; set; }
+} 
