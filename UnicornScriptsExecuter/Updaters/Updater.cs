@@ -29,7 +29,8 @@ public class Updater : IUpdater
                     {
                         Log.Information($"Выполнение скрипта \"{sqlFile}\"");
                         var sql = await File.ReadAllTextAsync(sqlFile);
-                        await con.ExecuteAsync(sql);
+                        var rows = await con.ExecuteAsync(sql, transaction);
+                        Log.Information($"affected {rows} rows");
                     }
 
                     await transaction.CommitAsync();

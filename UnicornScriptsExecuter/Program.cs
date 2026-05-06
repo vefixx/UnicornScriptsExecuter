@@ -35,7 +35,7 @@ class Program
         var updaterManager = new UpdaterManager();
         
         Log.Information($"Запуск менеджера обновления..");
-        await updaterManager.ExecuteUpdater(_options.PeriodType, _appSettings);
+        await updaterManager.ExecuteUpdater(_options.UpdateType, _appSettings);
         
         Log.Information($"Завершение программы");
     }
@@ -51,7 +51,7 @@ class Program
         if (_options.WithFileLogging)
         {
             var currentDateString = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-            loggerBuilder.WriteTo.File($"updater_{_options.PeriodType}_{currentDateString}");
+            loggerBuilder.WriteTo.File($"updater_{_options.UpdateType}_{currentDateString}");
         }
 
         Log.Logger = loggerBuilder.CreateLogger();
