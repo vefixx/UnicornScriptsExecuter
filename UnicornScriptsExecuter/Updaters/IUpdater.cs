@@ -1,6 +1,6 @@
-﻿using UnicornStatsUpdater.Models;
+﻿using UnicornScriptsExecuter.Models;
 
-namespace UnicornStatsUpdater.Updaters;
+namespace UnicornScriptsExecuter.Updaters;
 
 public interface IUpdater
 {

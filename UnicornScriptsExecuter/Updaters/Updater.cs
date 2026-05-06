@@ -1,19 +1,17 @@
 ﻿using Dapper;
 using Microsoft.Data.Sqlite;
 using Serilog;
-using UnicornStatsUpdater.Models;
 
-namespace UnicornStatsUpdater.Updaters;
+namespace UnicornScriptsExecuter.Updaters;
 
-public class HourlyUpdater : IUpdater
+public class Updater : IUpdater
 {
     public async Task ExecuteAsync(string sqlFilesPath, string connectionString)
     {
         if (sqlFilesPath.EndsWith('/'))
             sqlFilesPath = sqlFilesPath[..^1];
+
         
-        
-        // Получаем все .sql файлы
         var files = Directory.GetFiles(sqlFilesPath)
             .Where(f => f.Contains(".sql")).ToArray();
         

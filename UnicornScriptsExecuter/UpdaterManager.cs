@@ -1,16 +1,12 @@
 ﻿using Serilog;
-using UnicornStatsUpdater.Models;
-using UnicornStatsUpdater.Updaters;
+using UnicornScriptsExecuter.Models;
+using UnicornScriptsExecuter.Updaters;
 
-namespace UnicornStatsUpdater;
+namespace UnicornScriptsExecuter;
 
 public class UpdaterManager
 {
-    private static readonly Dictionary<string, IUpdater> UpdatersMap = new()
-    {
-        { "hourly", new HourlyUpdater() }
-    };
-
+    
     public async Task ExecuteUpdater(string periodType, AppSettings appSettings)
     {
         // Проверяем, указан ли путь в конфигурации
@@ -27,14 +23,9 @@ public class UpdaterManager
             Log.Error($"Директория \"{sqlFilesPath}\" пустая или не существует");
             return;
         }
+
+        var updater = new Updater();
         
-        await UpdatersMap[periodType].ExecuteAsync(sqlFilesPath, appSettings.ConnectionString);
+        await updater.ExecuteAsync(sqlFilesPath, appSettings.ConnectionString);
     }
-    
-    /// <summary>
-    /// Существует ли в программе обработчик для указанного периода
-    /// </summary>
-    /// <param name="periodType"></param>
-    /// <returns></returns>
-    public static bool UpdaterExists(string periodType) => UpdatersMap.ContainsKey(periodType);
 }

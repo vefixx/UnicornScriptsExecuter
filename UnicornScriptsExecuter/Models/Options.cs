@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace UnicornStatsUpdater.Models;
+namespace UnicornScriptsExecuter.Models;
 
 public class Options
 {

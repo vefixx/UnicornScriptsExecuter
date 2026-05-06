@@ -2,10 +2,10 @@
 using CommandLine;
 using Microsoft.Extensions.Configuration;
 using Serilog;
-using UnicornStatsUpdater.Models;
-using UnicornStatsUpdater.Updaters;
+using UnicornScriptsExecuter.Models;
+using UnicornScriptsExecuter.Updaters;
 
-namespace UnicornStatsUpdater;
+namespace UnicornScriptsExecuter;
 
 
 class Program
@@ -21,12 +21,6 @@ class Program
 
         if (_options == null)
         {
-            return;
-        }
-        
-        if (!UpdaterManager.UpdaterExists(_options.PeriodType))
-        {
-            Console.WriteLine($"Некорректный аргумент --period_type: \"{_options.PeriodType}\" не найден");
             return;
         }
 
